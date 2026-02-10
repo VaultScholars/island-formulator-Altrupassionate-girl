@@ -6,11 +6,11 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Ingredients</h1>
-    <%= link_to "New ingredient", new_ingredient_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl text-pink-600">Ingredients</h1>
+    <%= link_to "New ingredient", new_ingredient_path, class: "rounded-md px-3.5 py-2.5 bg-pink-600 hover:bg-purple-500 text-white block font-medium" %>
   </div>
 
-  <div id="ingredients" class="min-w-full divide-y divide-gray-200 space-y-5">
+  <div id="ingredients" class="min-w-full divide-y divide-pink-200 space-y-5">
     <% if @ingredients.any? %>
       <% @ingredients.each do |ingredient| %>
         <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
