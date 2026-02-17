@@ -9,6 +9,7 @@
 #   end
 puts "Cleaning database..."
 Ingredient.destroy_all
+Tag.destroy_all # Clean up old tags if they exist
 
 # Creates a default user
 user = User.find_or_create_by!(email_address: "demo@example.com") do |u|
@@ -63,6 +64,20 @@ ingredients = [
     notes: "A natural humectant that attracts and retains moisture."
   }
 ]
+tags = [
+  "Hair Growth",
+  "Moisturizing",
+  "Anti-inflammatory",
+  "Scalp Soothing",
+  "Shine",
+  "Curl Definition",
+  "Preservative",
+  "Emulsifier",
+  "Antioxidant",
+  "Humectant",
+  "Emollient",
+  "Surfactant"
+]
 
 ingredients.each do |ingredient_data|
   user.ingredients.find_or_create_by!(name: ingredient_data[:name]) do |i|
@@ -71,4 +86,10 @@ ingredients.each do |ingredient_data|
   end
 end
 
+tags.each do |tag_name|
+  # find_or_create_by! is great because it won't create duplicates if you run the seed twice.
+  Tag.find_or_create_by!(name: tag_name)
+end
+
 puts "Done! Created #{user.ingredients.count} ingredients for demo user!"
+puts "Created #{Tag.count} tags!"
