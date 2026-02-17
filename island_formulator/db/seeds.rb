@@ -10,7 +10,15 @@
 puts "Cleaning database..."
 Ingredient.destroy_all
 
-puts "Creating ingredients..."
+# Creates a default user
+user = User.find_or_create_by!(email_address: "demo@example.com") do |u|
+  u.password = "password123"
+  u.password_confirmation = "password123"
+end
+
+puts "Created demo user: #{user.email_address}"
+
+# Ingredients linked to the user
 ingredients = [
   {
     name: "Jojoba Oil",
@@ -56,9 +64,11 @@ ingredients = [
   }
 ]
 
-ingredients.each do |attr|
-  Ingredient.create!(attr)
-  puts "Created #{attr[:name]}"
+ingredients.each do |ingredient_data|
+  user.ingredients.find_or_create_by!(name: ingredient_data[:name]) do |i|
+    i.category = ingredient_data[:category]
+    i.description = ingredient_data[:description]
+  end
 end
 
-puts "Done! Created #{Ingredient.count} ingredients."
+puts "Done! Created #{user.ingredients.count} ingredients for demo user!"
