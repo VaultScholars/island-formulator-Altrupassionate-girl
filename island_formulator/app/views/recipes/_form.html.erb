@@ -11,6 +11,92 @@
     </div>
   <% end %>
 
+  <div class="my-5">
+    <%= form.label :title %>
+    <%= form.text_field :title,
+                    class: [
+                      "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
+                      {
+                        "border-gray-400 focus:outline-blue-600":
+                          recipe.errors[:title].none?,
+                        "border-red-400 focus:outline-red-600":
+                          recipe.errors[:title].any?,
+                      },
+                    ] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :product_type, "Product Type (e.g. Hair Oil, Body Butter)" %>
+    <%= form.text_field :product_type,
+                    class: [
+                      "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
+                      {
+                        "border-gray-400 focus:outline-blue-600":
+                          recipe.errors[:product_type].none?,
+                        "border-red-400 focus:outline-red-600":
+                          recipe.errors[:product_type].any?,
+                      },
+                    ] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :method %>
+    <%= form.textarea :method,
+                  rows: 5,
+                  class: [
+                    "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
+                    {
+                      "border-gray-400 focus:outline-blue-600":
+                        recipe.errors[:method].none?,
+                      "border-red-400 focus:outline-red-600":
+                        recipe.errors[:method].any?,
+                    },
+                  ] %>
+  </div>
+
+  <div class="my-5">
+    <h3 class="font-bold mb-2">Ingredients</h3>
+    <p class="text-sm text-gray-500 mb-4">Select the ingredients and specify the amount needed for this recipe.</p>
+
+    <div class="space-y-4">
+      <%= form.fields_for :recipe_ingredients do |ri_form| %>
+        <div
+          class="
+            flex flex-col md:flex-row md:items-end space-y-2 md:space-y-0 md:space-x-4
+            bg-gray-50 p-4 rounded border border-gray-200
+          "
+        >
+          <div class="flex-1">
+            <%= ri_form.label :ingredient_id, "Ingredient", class: "block text-sm font-medium text-gray-600" %>
+            <%= ri_form.collection_select :ingredient_id,
+                                      Ingredient.all,
+                                      :id,
+                                      :name,
+                                      { prompt: "Select Ingredient" },
+                                      { class: "block shadow-sm rounded-md border border-gray-400 px-3 py-2 mt-2 w-full focus:outline-blue-600 bg-white" } %>
+          </div>
+
+          <div class="w-full md:w-48">
+            <%= ri_form.label :quantity, "Amount", class: "block text-sm font-medium text-gray-600" %>
+            <%= ri_form.text_field :quantity,
+                               placeholder: "e.g. 50g or 2 tbsp",
+                               class: "block shadow-sm rounded-md border border-gray-400 px-3 py-2 mt-2 w-full focus:outline-blue-600" %>
+          </div>
+
+          <% if ri_form.object.persisted? %>
+            <div class="flex items-center pb-2">
+              <%= ri_form.check_box :_destroy,
+                                class: "h-4 w-4 text-red-600 border-gray-300 rounded" %>
+              <%= ri_form.label :_destroy,
+                            "Remove",
+                            class: "ml-2 text-red-600 text-sm font-medium" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
   <div class="inline">
     <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>

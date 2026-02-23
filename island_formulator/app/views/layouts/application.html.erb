@@ -32,9 +32,14 @@
           <%= link_to root_path, class: "text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors" do %>
             Ingredient Knowledge Base
           <% end %>
-          
+
           <% if authenticated? %>
-            <%= link_to "My Ingredients", ingredients_path, class: "text-gray-600 hover:text-gray-900 transition-colors" %>
+            <%= link_to "My Recipes",
+            recipes_path,
+            class: "text-gray-600 hover:text-gray-900 transition-colors" %>
+            <%= link_to "My Ingredients",
+            ingredients_path,
+            class: "text-gray-600 hover:text-gray-900 transition-colors" %>
           <% end %>
         </div>
         
@@ -50,6 +55,7 @@
             <%= link_to "Login", new_session_path, class: "px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors" %>
           <% end %>
         </div>
+        
       </div>
     </nav>
       <%= yield %>
