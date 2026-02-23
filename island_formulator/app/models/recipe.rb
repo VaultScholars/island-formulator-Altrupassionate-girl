@@ -27,4 +27,5 @@ class Recipe < ApplicationRecord
       errors.add(:base, "Recipe must have at least one ingredient")
     end
   end
+  has_one_attached :photo
 end

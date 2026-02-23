@@ -65,7 +65,7 @@ class IngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingredient_params
-      params.expect(ingredient: [ :name, :category, :description, :notes, tag_ids: [] ])
+      params.require(:ingredient).permit(:name, :category, :description, :notes, :photo, tag_ids: [])
       # The [] means we are expecting an ARRAY of IDs (since you can check multiple boxes).
       # Note: tag_ids: [] must be the LAST parameter in the permit() call
     end
