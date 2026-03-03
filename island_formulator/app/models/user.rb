@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
+  has_many :inventory_items, dependent: :destroy
+  # This is duplicated. Check back the weeks to see if it's tagging or something else
   has_many :ingredients, dependent: :destroy
   # This says: "A user can have many ingredients. If the user is deleted, delete their ingredients too."
   has_many :ingredients, dependent: :destroy
