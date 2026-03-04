@@ -12,6 +12,8 @@
       <%= link_to "Edit", edit_recipe_path(@recipe), class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
       <%= link_to "Back", recipes_path, class: "text-gray-600 hover:underline" %>
       <%= button_to "Destroy this recipe", @recipe, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+      <%= link_to "Log a New Batch", new_batch_path(recipe_id: @recipe.id), 
+      class: "rounded-lg py-3 px-5 bg-green-600 text-white inline-block font-medium" %>
     </div>
   </div>
   

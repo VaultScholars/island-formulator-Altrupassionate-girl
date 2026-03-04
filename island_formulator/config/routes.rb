@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :batches
   resources :inventory_items
   resources :recipes
   resource :session
@@ -6,6 +7,11 @@ Rails.application.routes.draw do
   # User registration:
   resources :users, only: [ :new, :create ]
   resources :ingredients
+
+  # New Week 4 resources - ADD THESE LINES:
+  resources :inventory_items
+  resources :batches, only: [ :index, :show, :new, :create, :destroy ]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

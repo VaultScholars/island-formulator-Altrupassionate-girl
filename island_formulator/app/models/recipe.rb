@@ -7,7 +7,8 @@ class Recipe < ApplicationRecord
   # A recipe has many ingredients, but it finds them by looking at the join table
   has_many :ingredients, through: :recipe_ingredients
 
-  # This is the magic line for our nested form!
+  has_many :batches, dependent: :destroy
+  # line for our nested form!
   # It allows us to save ingredients at the same time we save the recipe.
   # allow_destroy: true lets us delete ingredients from a recipe.
   # reject_if: :all_blank prevents saving empty rows.

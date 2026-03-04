@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # This says: "A user can have many ingredients. If the user is deleted, delete their ingredients too."
   has_many :ingredients, dependent: :destroy
   has_many :recipes, dependent: :destroy
+  has_many :batches, dependent: :destroy
 
   # Add validations for better error messages
   validates :email_address, presence: true, uniqueness: { case_sensitive: false }
