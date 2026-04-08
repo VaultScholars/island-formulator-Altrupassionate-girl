@@ -25,31 +25,30 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex flex-col">
-    <nav class="mb-8 px-6 py-4 bg-white border-b border-gray-200 shadow-sm">
+    <nav class="mb-8 px-6 py-4 bg-white border-b-2 border-purple-800 shadow-md">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
         
         <%# Left side - App name and main nav %>
         <div class="flex items-center gap-8">
           <% if authenticated? %>
-            <%= link_to "Dashboard", root_path, class: "text-gray-600 hover:text-gray-900 transition-colors" %>
-              <% end %>
-            <%= link_to "My Recipes", recipes_path, class: "text-gray-600 hover:text-gray-900 transition-colors" %>
-            <%= link_to "Inventory", inventory_items_path, class: "text-gray-600 hover:text-gray-900 transition-colors" %>
-            <%= link_to "Batches", batches_path, class: "text-gray-600 hover:text-gray-900 transition-colors" %>
-            <%= link_to "My Ingredients", ingredients_path, class: "text-gray-600 hover:text-gray-900 transition-colors" %>
-          
+            <%= link_to "Dashboard", root_path, class: "text-pink-600 hover:text-purple-700 transition-colors" %>
+          <% end %>
+          <%= link_to "My Recipes", recipes_path, class: "text-pink-600 hover:text-purple-700 transition-colors" %>
+          <%= link_to "Inventory", inventory_items_path, class: "text-pink-600 hover:text-purple-700 transition-colors" %>
+          <%= link_to "Batches", batches_path, class: "text-pink-600 hover:text-purple-700 transition-colors" %>
+          <%= link_to "My Ingredients", ingredients_path, class: "text-pink-600 hover:text-purple-700 transition-colors" %>
         </div>
         
         <%# Right side - Auth links %>
         <div class="flex items-center gap-4">
           <% if authenticated? %>
-            <span class="text-sm text-gray-500">
+            <span class="text-sm text-purple-800">
               <%= Current.user.email_address %>
             </span>
-            <%= button_to "Logout", session_path, method: :delete, class: "px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors" %>
+            <%= button_to "Logout", session_path, method: :delete, class: "px-4 py-2 text-sm text-pink-600 hover:text-pink-700 hover:bg-pink-50 rounded-lg transition-colors" %>
           <% else %>
-            <%= link_to "Sign Up", new_user_path, class: "px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors" %>
-            <%= link_to "Login", new_session_path, class: "px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors" %>
+            <%= link_to "Sign Up", new_user_path, class: "px-4 py-2 text-sm font-medium text-white bg-pink-600 hover:bg-purple-700 rounded-lg transition-colors" %>
+            <%= link_to "Login", new_session_path, class: "px-4 py-2 text-sm font-medium text-purple-700 hover:text-purple-900 hover:bg-purple-50 rounded-lg transition-colors" %>
           <% end %>
         </div>
         
